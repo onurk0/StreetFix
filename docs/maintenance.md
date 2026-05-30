@@ -72,7 +72,8 @@ Inside `src/db`
     - used for entering synthetic data into the system. Primarily for testing purposes. Do not include any sensitive data.
  
 ## Gemfile
-Modify the Gemfile as needed. Add, remove, and update versions for Gems.
+Modify the Gemfile as needed. Add, remove, and update versions of Gems.
+Any outdated or deprecated Gems should be removed and replaced with a suitable replacement.
 
 
 
