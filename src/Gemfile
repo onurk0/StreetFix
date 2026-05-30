@@ -1,0 +1,67 @@
+source 'https://rubygems.org'
+git_source(:github) { |repo| "https://github.com/#{repo}.git" }
+
+ruby '4.0.1'
+
+# Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
+gem 'rails', '~> 8.1'
+# Explicitly add Bundler gem for version management
+gem 'bundler', '>= 2.0'
+# Use PostgreSQL as the database for Active Record (compatible with PostgreSQL 18.1)
+gem 'pg', '~> 1.1'
+# Use Puma as the app server
+gem 'puma', '~> 6.0'
+# Use Dart Sass for SCSS compilation
+gem 'dartsass-rails'
+gem 'sprockets-rails'
+# Bootstrap 5 is served via CDN in the application layout
+# Use importmap for JavaScript (replaces webpacker)
+gem 'importmap-rails'
+# Hotwire's SPA-like page accelerator (replaces turbolinks)
+gem 'turbo-rails'
+# Hotwire's modest JavaScript framework
+gem 'stimulus-rails'
+# Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
+gem 'jbuilder', '~> 2.7'
+# Use Redis adapter to run Action Cable in production
+# gem 'redis', '~> 4.0'
+# Use Active Model has_secure_password
+# gem 'bcrypt', '~> 3.1.7'
+
+# Use Active Storage variant
+# gem 'image_processing', '~> 1.2'
+
+# Reduces boot times through caching; required in config/boot.rb
+gem 'bootsnap', '>= 1.4.2', require: false
+
+group :development, :test do
+  # Call 'debug' anywhere in the code to stop execution and get a debugger console
+  gem 'debug', platforms: [:mri, :mingw, :x64_mingw]
+  # added faker gem for generating syntehtic data
+  gem 'faker', '~> 3.5'
+end
+
+group :development do
+  # Access an interactive ,console on exception pages or by calling 'console' anywhere in the code.
+  gem 'web-console', '>= 4.1.0'
+  gem 'listen', '~> 3.5'
+
+  # Better errors in the web browser when things go wrong
+  gem "better_errors", "~> 2.10"
+  gem "binding_of_caller"
+end
+
+group :test do
+  # Adds support for Capybara system testing and selenium driver
+  gem 'capybara', '>= 2.15'
+  # selenium-webdriver >= 4.11 includes built-in driver management (no webdrivers gem needed)
+  gem 'selenium-webdriver', '>= 4.11'
+end
+
+# Windows does not include zoneinfo files, so bundle the tzinfo-data gem
+gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
+
+# User authentication system, handling logins and signups
+gem 'devise'
+# Administration Panel
+gem 'rails_admin', '~> 3.0'

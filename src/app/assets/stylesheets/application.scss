@@ -1,0 +1,29 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, or any plugin's
+ * vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any other CSS/SCSS
+ * files in this directory. Styles in this file should be added after the last require_* statement.
+ * It is generally better to create a new file per style scope.
+ *
+ *= require_tree .
+ *= require_self
+ */
+
+// Custom SCSS goes here. Bootstrap 5 is loaded via CDN in the application layout.
+// To override Bootstrap variables, define them here before any imports.
+// Example: $primary: #3d85c8;
+
+// Add any GLOBAL SCSS/CSS to this file for your project. If it is specific
+// to a page, use the individual SCSS file that is generated for the controller.
+
+// Add any GLOBAl SCSS/CSS to this file for your project. If it is specific
+// to a page, use the individual SCSS file that is generated for the controller
+// The comments at the top of the file, specifically require_tree .
+// and require_self *cannot* be removed.
+
+// Your code here...

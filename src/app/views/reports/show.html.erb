@@ -1,0 +1,52 @@
+<!-- 
+# Onur Kose - S26-OK-StreetFix
+# Reporting infrastructure problems to raise awareness
+# Filename: show.html.erb
+# Description: page for displaying report details
+# Last Modified on: April 13, 2026
+-->
+
+<div class="d-flex justify-content-between align-items-start mb-3">
+  <div>
+    <h1><%= @report.title %></h1>
+    <span class="badge bg-secondary fs-6"><%= @report.report_type.humanize %></span>
+    <span class="badge bg-<%= @report.status == 'open' ? 'success' : 'warning' %> fs-6"><%= @report.status.humanize %></span>  
+    <%= link_to "← Back to Reports", reports_path, class: "btn btn-outline-secondary" %>
+</div>
+
+<div class="card mb-4">
+  <div class="card-body">
+    <p><strong>Location:</strong> <%= @report.location %></p>
+    <p><strong>Reported by:</strong> <%= @report.user.email %></p>
+    <p><strong>Date:</strong> <%= @report.date_reported&.strftime("%B %d, %Y") %></p>
+    <hr>
+    <p><%= @report.description %></p>
+    <% if @report.image_url.present? %>
+      <img src="<%= @report.image_url %>" class="img-fluid rounded mt-2" alt="Report image">
+    <% end %>
+  </div>
+</div>
+
+<%# Voting and action buttons %>
+<div class="d-flex align-items-center gap-3 mb-4">
+  <span class="fs-5">👍 <strong><%= @vote_count %></strong> votes</span>
+  <% if user_signed_in? %>
+    <%= button_to @user_voted ? "Remove Vote" : "Upvote",
+        vote_report_path(@report),
+        class: "btn #{@user_voted ? 'btn-secondary' : 'btn-success'}" %>
+  <% else %>
+    <%= link_to "Login to vote", new_user_session_path, class: "btn btn-outline-primary" %>
+  <% end %>
+  
+  <% if user_signed_in? %>
+    <%# Edit button only for report owner %>
+    <% if @report.user == current_user %>
+      <%= link_to "Edit", edit_report_path(@report), class: "btn btn-warning" %>
+    <% end %>
+    <%# Delete button for owner or admin %>
+    <% if @report.user == current_user || current_user.admin? %>
+      <%= button_to "Delete", @report, method: :delete, class: "btn btn-danger",
+          form: { data: { turbo_confirm: "Are you sure you want to delete this report?" } } %>
+    <% end %>
+  <% end %>
+</div>

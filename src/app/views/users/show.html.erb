@@ -1,0 +1,25 @@
+<!--
+# Onur Kose - S26-OK-StreetFix
+# Reporting infrastructure problems to raise awareness
+# Filename: show.html.erb
+# Description: user account page view
+# Last Modified on: April 15, 2026
+-->
+
+<h1>My Account</h1>
+
+<div class="card">
+  <div class="card-body">
+    <h5 class="card-title">Account Information</h5>
+    <p class="card-text">
+      <strong>Email:</strong> <%= @user.email %><br>
+      <strong>Reports Created:</strong> <%= @user.reports.count %><br>
+      <strong>Votes Cast:</strong> <%= @user.votes.count %>
+    </p>
+    <div class="mt-3">
+      <%= link_to "Edit Account", edit_user_registration_path, class: "btn btn-primary" %>
+      <%= link_to "My Reports", reports_path(user_id: @user.id), class: "btn btn-secondary" %>
+      <%= button_to "Logout", destroy_user_session_path, method: :delete, class: "btn btn-danger" %>
+    </div>
+  </div>
+</div>

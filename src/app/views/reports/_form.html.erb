@@ -1,0 +1,53 @@
+<!-- 
+# Onur Kose - S26-OK-StreetFix
+# Reporting infrastructure problems to raise awareness
+# Filename: _form.html.erb
+# Description: form for submitting reports
+# Last Modified on: April 13, 2026
+-->
+
+<%= form_with model: report, class: "mt-3" do |f| %>
+
+  <%# Show validation errors if any %>
+  <% if report.errors.any? %>
+    <div class="alert alert-danger">
+      <ul class="mb-0">
+        <% report.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="mb-3">
+    <%= f.label :title, class: "form-label" %>
+    <%= f.text_field :title, class: "form-control", placeholder: "e.g. Large pothole on Elm St" %>
+  </div>
+
+  <div class="mb-3">
+    <%= f.label :report_type, class: "form-label" %>
+    <%= f.select :report_type,
+        Report.report_types.keys.map { |t| [t.humanize, t] },
+        { prompt: "Select a type" },
+        { class: "form-select" } %>
+  </div>
+
+  <div class="mb-3">
+    <%= f.label :location, class: "form-label" %>
+    <%= f.text_field :location, class: "form-control", placeholder: "e.g. 123 Main St, Trenton NJ" %>
+  </div>
+
+  <div class="mb-3">
+    <%= f.label :description, class: "form-label" %>
+    <%= f.text_area :description, class: "form-control", rows: 4, placeholder: "Describe the issue in detail..." %>
+  </div>
+
+  <div class="mb-3">
+    <%= f.label :image_url, "Image URL (optional)", class: "form-label" %>
+    <%= f.text_field :image_url, class: "form-control", placeholder: "https://..." %>
+  </div>
+
+  <%= f.submit class: "btn btn-primary" %>
+  <%= link_to "Cancel", reports_path, class: "btn btn-outline-secondary ms-2" %>
+
+<% end %>

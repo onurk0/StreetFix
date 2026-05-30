@@ -1,0 +1,55 @@
+<!-- 
+# Onur Kose - S26-OK-StreetFix
+# Reporting infrastructure problems to raise awareness
+# Filename: index.html.erb
+# Description: list all reports with filtering by type
+# Last Modified on: April 12, 2026
+-->
+
+<div class="d-flex justify-content-between align-items-center mb-3">
+  <h1>Reports</h1>
+  <%= link_to "Submit a Report", new_report_path, class: "btn btn-primary" %>
+</div>
+
+<%# Filter dropdown %>
+<%= form_with url: reports_path, method: :get, class: "mb-4" do |f| %>
+  <div class="d-flex gap-2">
+    <%= f.select :report_type,
+        [["All Types", ""]] + Report.report_types.keys.map { |t| [t.humanize, t] },
+        { selected: params[:report_type] },
+        { class: "form-select w-auto" } %>
+    <%= f.submit "Filter", class: "btn btn-outline-secondary" %>
+    <%= link_to "Clear", reports_path, class: "btn btn-outline-danger" %>
+  </div>
+<% end %>
+
+<%# Report cards %>
+<% if @reports.empty? %>
+  <p class="text-muted">No reports found.</p>
+<% else %>
+  <div class="row row-cols-1 row-cols-md-2 g-4">
+    <% @reports.each do |report| %>
+      <div class="col">
+        <div class="card h-100">
+          <div class="card-body">
+            <div class="d-flex justify-content-between">
+              <h5 class="card-title"><%= report.title %></h5>
+              <span class="badge bg-secondary"><%= report.report_type.humanize %></span>
+            </div>
+            <p class="card-text text-muted"><%= report.location %></p>
+            <p class="card-text"><%= truncate(report.description, length: 100) %></p>
+          </div>
+          <div class="card-footer d-flex justify-content-between align-items-center">
+            <small class="text-muted">
+              By <%= report.user.email %> &middot; <%= time_ago_in_words(report.created_at) %> ago
+            </small>
+            <div class="d-flex align-items-center gap-2">
+              <span class="text-muted">👍 <%= report.vote_count %></span>
+              <%= link_to "View", report, class: "btn btn-sm btn-outline-primary" %>
+            </div>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+<% end %>

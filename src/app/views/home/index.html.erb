@@ -1,0 +1,47 @@
+<!-- 
+# Onur Kose - S26-OK-StreetFix
+# Reporting infrastructure problems to raise awareness
+# Filename: index.html.erb
+# Description: main page display
+# Last Modified on: April 15, 2026
+-->
+
+<%# Hero Section %>
+<div class="p-5 mb-4 bg-light rounded-3">
+  <div class="container-fluid py-3">
+    <h1 class="display-5 fw-bold">Welcome to StreetFix!</h1>
+    <p class="col-md-8 fs-5 text-muted">
+      StreetFix is a community-powered platform for reporting local infrastructure issues. 
+      Spotted a pothole, broken streetlight, or fallen tree? Let your city know.
+    </p>
+    <div class="d-flex gap-2 mt-4">
+      <%= link_to "View Reports", reports_path, class: "btn btn-primary btn-lg" %>
+      <%= link_to "Submit a Report", new_report_path, class: "btn btn-outline-secondary btn-lg" %>
+    </div>
+  </div>
+</div>
+
+<%# Report Type Cards %>
+<h5 class="text-muted mb-3">What can you report?</h5>
+<div class="row row-cols-2 row-cols-md-3 g-3">
+  <% [
+  ["pothole",     "Potholes"],
+  ["streetlight", "Streetlights"],
+  ["sidewalk",    "Sidewalks"],
+  ["tree",        "Fallen Trees"],
+  ["powerline",   "Powerlines"],
+  ["other",       "Other"]
+].each do |type, label| %>
+  <div class="col">
+    <div class="card text-center h-100 py-3">
+      <img src="/assets/<%= type %>.jpg" 
+           class="card-img-top mx-auto mt-2" 
+           style="width: 80px; height: 80px; object-fit: cover; border-radius: 8px;"
+           alt="<%= label %>">
+      <div class="card-body py-1">
+        <p class="card-text fw-semibold"><%= label %></p>
+      </div>
+    </div>
+  </div>
+<% end %>
+</div>
