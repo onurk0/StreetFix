@@ -55,6 +55,8 @@ Default users:
 ## Project Maintenance
 Please refer to [review](/docs/maintenance.md) to learn more about maintaining this project.
 
+If you wish to make this project your own, please refer to the License!
+
 
  
 ## Milestones
