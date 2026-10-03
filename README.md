@@ -1,71 +1,134 @@
-# StreetFix README
+# StreetFix
 
-Welcome to StreetFix!
+StreetFix is a Rails web application built to help communities report and track local infrastructure issues such as potholes, broken sidewalks, damaged street lights, fallen trees, and downed power lines.
 
-Failing infrastructure is bad for a community. Potholes, damaged sidewalks, malfunctioning street lights, downed trees and powerlines all
-present a hazard to the community. Not only it is a hazard, first responders also have trouble accessing the area during an emergency.
+Residents can submit reports, add details about a problem, and vote to raise the visibility of issues that need attention. The app is designed to make it easier for communities to identify, prioritize, and monitor hazards in public spaces.
 
-This project aims to help help the community report infrastructure issues in their area by utilizing a web-based application. 
+## Overview
 
-To achieve this efficiently, users can login and submit a detailed report about the damaged infrastructure. Users can then vote on the report to 
-boosts its popularity and visibility.
+StreetFix helps with:
 
-## Getting Started
-Let's get started!
+- reporting location-based infrastructure problems
+- describing the issue and adding context to a report
+- increasing visibility through community voting
+- reviewing and managing reports in an admin workflow
+- creating a simple, user-friendly experience for public maintenance requests
 
-First, clone this repository to a directory.
+## Runtime previews
 
-This application uses a PostgreSQL database. In order to use it, add these following lines to the bottom of your
-`.bash_profile`:
+The placeholders below are ready for real screenshots or app captures once the project is running locally.
+
+![StreetFix dashboard placeholder](docs/images/streetfix-dashboard.svg)
+![StreetFix report form placeholder](docs/images/streetfix-report-form.svg)
+![StreetFix report list placeholder](docs/images/streetfix-report-list.svg)
+
+## Tech stack
+
+- Ruby 4.0.1
+- Rails 8.1
+- PostgreSQL
+- Hotwire / Turbo / Stimulus
+- Bootstrap styling
+- Puma web server
+
+## Prerequisites
+
+Before installing, make sure your machine has:
+
+- Git
+- PostgreSQL
+- Ruby 4.0.1 and Bundler
+- Node.js and npm
+- A local shell environment configured for Ruby version management
+
+Use the single installer script for the project environment:
+
 ```bash
-export PATH="$HOME/.rbenv/bin:$PATH"
-eval "$(~/.rbenv/bin/rbenv init – bash)"
-export PATH="$HOME/.rbenv/plugins/ruby-build/bin:$PATH"
-export PATH="/usr/pgsql-18/bin:$PATH"
+./installruby.sh
 ```
-After this, run the `./installruby.sh` script to ensure that the necessary Ruby version is on your device. Just a heads up-this will take while!
 
-Quick sanity check:
-- Check your PostgreSQL version: `which postgres` should return `/usr/pgsql-17/bin` or `/usr/pgsql-17/bin/postgres`
-- Check your Ruby version: `which ruby` should return `~/.rbenv/shims/ruby`
-- `ruby -v` should return `ruby 4.0.1`
+This script installs the correct Ruby version and the matching Rails version for the app, then configures Bundler.
 
-After installing, navigate to the directory titled `StreetFix`
+## Installation
 
-Navigate to `src`, then run 
+1. Clone the repository:
+
 ```bash
+git clone <your-repository-url>
+cd StreetFix
+```
+
+2. Run the single project installer:
+
+```bash
+./installruby.sh
+```
+
+This is the only install script the project uses for the runtime environment. If the script updates your shell configuration, log out and back in before continuing.
+
+3. Start PostgreSQL and confirm it is available:
+
+```bash
+which postgres
+postgres --version
+```
+
+4. Install the Ruby gems:
+
+```bash
+cd src
 bundle install
 ```
 
-To create and seed the database, run `rails db:setup`
+5. Create and seed the database:
 
-To clean the database and reseed, run `rails db:reset`
+```bash
+bin/rails db:setup
+```
 
-To remove all data and add your own, run `rails db:truncate_all`
+6. Start the app:
 
-You can make an account using the `Login` button. From there you can freely interact with
-the site by making reports, deleting reports, updating reports, and viewing reports. You can
-interact with the reports by liking them as well.
+```bash
+bin/rails server
+```
 
-Default users:
-- default user: `user@example.com / password`
-- admin: `admin@example.com / password`
+Then open the application in your browser at:
 
+```text
+http://localhost:3000
+```
 
-## Project Maintenance
-Please refer to [review](/docs/maintenance.md) to learn more about maintaining this project.
+## Common database commands
 
-If you wish to make this project your own, please refer to the License!
+```bash
+bin/rails db:setup
+bin/rails db:reset
+bin/rails db:migrate
+```
 
+## Default demo accounts
 
- 
+The application includes seeded users for testing:
+
+- User: `user@example.com` / `password`
+- Admin: `admin@example.com` / `password`
+
+## Project maintenance
+
+For project maintenance notes and operational guidance, see [docs/maintenance.md](docs/maintenance.md).
+
+## License
+
+This project is available under the terms in the repository license file.
+
 ## Milestones
-- [x] added functionality to make reports
-- [x] added functionality to login and create account
-- [x] added support to logout
-- [x] added admin functionality (remove posts)
-- [x] added synthetic/testing data to the application
-- [x] addded buttons to home page
-- [x] added vote counter to all projects
-- [x] added `sort by` function for project sorting
+
+- [x] report creation
+- [x] user login and account creation
+- [x] logout support
+- [x] admin moderation actions
+- [x] seeded testing data
+- [x] homepage actions and navigation
+- [x] vote counter support
+- [x] sorting/filtering for reports
 
