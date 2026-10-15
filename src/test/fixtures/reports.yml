@@ -1,0 +1,9 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+pothole:
+  user: one
+  title: Large pothole on Elm St
+  description: Deep enough to damage tires.
+  location: 123 Elm St
+  report_type: pothole
+  status: open

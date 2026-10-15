@@ -9,6 +9,12 @@ RailsAdmin.config do |config|
   end
   config.current_user_method(&:current_user)
 
+  # Only admins may use the admin panel. Without this, any signed-in user
+  # could open /admin and edit any record, including granting themselves admin.
+  config.authorize_with do
+    redirect_to main_app.root_path, alert: 'You are not authorized to access that page.' unless current_user&.admin?
+  end
+
   ## == CancanCan ==
   # config.authorize_with :cancancan
 

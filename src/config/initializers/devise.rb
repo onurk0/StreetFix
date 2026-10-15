@@ -253,6 +253,12 @@ Devise.setup do |config|
   # The "*/*" below is required to match Internet Explorer requests.
   # config.navigational_formats = ['*/*', :html]
 
+  # ==> Hotwire/Turbo configuration
+  # Turbo requires failed form submissions to return 422 and redirects
+  # to use 303, otherwise Devise's error messages are never rendered.
+  config.responder.error_status = :unprocessable_entity
+  config.responder.redirect_status = :see_other
+
   # The default HTTP method used to sign out a resource. Default is :delete.
   config.sign_out_via = :delete
 

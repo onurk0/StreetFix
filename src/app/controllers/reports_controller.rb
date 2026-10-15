@@ -23,7 +23,7 @@ class ReportsController < ApplicationController
   # GET /reports
   def index
     # get all reports, newest first shown first
-    @reports = Report.all.order(created_at: :desc)
+    @reports = Report.includes(:user).order(created_at: :desc)
 
     # Filter by user if user_id provided
     if params[:user_id].present?

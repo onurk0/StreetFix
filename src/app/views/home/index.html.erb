@@ -34,10 +34,10 @@
 ].each do |type, label| %>
   <div class="col">
     <div class="card text-center h-100 py-3">
-      <img src="/assets/<%= type %>.jpg" 
-           class="card-img-top mx-auto mt-2" 
-           style="width: 80px; height: 80px; object-fit: cover; border-radius: 8px;"
-           alt="<%= label %>">
+      <%= image_tag "#{type}.jpg",
+            class: "card-img-top mx-auto mt-2",
+            style: "width: 80px; height: 80px; object-fit: cover; border-radius: 8px;",
+            alt: label %>
       <div class="card-body py-1">
         <p class="card-text fw-semibold"><%= label %></p>
       </div>

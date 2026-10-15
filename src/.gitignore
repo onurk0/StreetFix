@@ -41,3 +41,6 @@ yarn-debug.log*
 
 Gemfile.lock
 yarn.lock
+
+# Vim undo files
+*.un~

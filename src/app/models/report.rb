@@ -26,7 +26,7 @@ class Report < ApplicationRecord
     tree: 3,
     power_line: 4,
     other: 5
-  }
+  }, validate: true
 
   # Validations
   validates :title,       presence: true, length: { maximum: 100 }
@@ -41,7 +41,7 @@ class Report < ApplicationRecord
 
   # check if a given user has already voted on this report
   def voted_by?(user)
-    voters.include?(user)
+    votes.exists?(user: user)
   end
 end
   
