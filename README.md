@@ -98,6 +98,44 @@ Then open the application in your browser at:
 http://localhost:3000
 ```
 
+## Running with Docker
+
+You can also run StreetFix with Docker instead of installing Ruby and PostgreSQL yourself. The included `docker-compose.yml` starts the app together with a PostgreSQL database.
+
+1. Install [Docker](https://docs.docker.com/get-docker/) with the Compose plugin.
+
+2. Build and start the containers from the repository root:
+
+```bash
+SECRET_KEY_BASE=$(openssl rand -hex 64) docker compose up --build
+```
+
+On first start the database is created and migrated automatically.
+
+3. Open the application at:
+
+```text
+http://localhost:3000
+```
+
+To stop the app, press `Ctrl+C` or run `docker compose down`. Database data and uploaded files are kept in Docker volumes; use `docker compose down -v` to delete them.
+
+The container runs in production mode, so the demo accounts and sample reports are not seeded. To make an account an admin, sign up in the browser and then run:
+
+```bash
+docker compose exec web bin/rails runner 'User.find_by(email: "you@example.com").update!(admin: true)'
+```
+
+To run the image without Compose, provide your own database connection:
+
+```bash
+docker build -t streetfix .
+docker run -p 3000:3000 \
+  -e DATABASE_URL=postgres://user:password@db-host:5432/streetfix \
+  -e SECRET_KEY_BASE=$(openssl rand -hex 64) \
+  streetfix
+```
+
 ## Common database commands
 
 ```bash
