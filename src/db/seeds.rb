@@ -13,7 +13,7 @@
 # frozen_string_literal: true
 
 # set language to English because Faker defaults to Latin
-Faker::Config.locale = 'en'
+Faker::Config.locale = 'en' if defined?(Faker)
 
 # remove all existing data
 puts "Cleaning database..."

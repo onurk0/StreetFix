@@ -14,6 +14,7 @@ gem 'puma', '~> 6.0'
 # Use Dart Sass for SCSS compilation
 gem 'dartsass-rails'
 gem 'sprockets-rails'
+gem 'dartsass-sprockets' # SCSS compiler for Sprockets (app stylesheets + rails_admin)
 # Bootstrap 5 is served via CDN in the application layout
 # Use importmap for JavaScript (replaces webpacker)
 gem 'importmap-rails'

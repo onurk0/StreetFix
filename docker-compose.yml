@@ -1,0 +1,30 @@
+services:
+  db:
+    image: docker.io/library/postgres:17
+    environment:
+      POSTGRES_USER: streetfix
+      POSTGRES_PASSWORD: streetfix
+      POSTGRES_DB: streetfix_production
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U streetfix"]
+      interval: 5s
+      retries: 10
+
+  web:
+    build: .
+    ports:
+      - "3000:3000"
+    environment:
+      DATABASE_URL: postgres://streetfix:streetfix@db:5432/streetfix_production
+      SECRET_KEY_BASE: ${SECRET_KEY_BASE:-change-me-to-a-long-random-string}
+    volumes:
+      - storage:/rails/storage
+    depends_on:
+      db:
+        condition: service_healthy
+
+volumes:
+  pgdata:
+  storage:

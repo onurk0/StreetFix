@@ -1,0 +1,16 @@
+.git
+.gitignore
+docs
+*.md
+installruby.sh
+uninstallruby.sh
+docker-compose.yml
+
+src/.bundle
+src/log/*
+src/tmp/*
+src/storage/*
+src/public/assets
+src/node_modules
+src/config/master.key
+src/.env*
