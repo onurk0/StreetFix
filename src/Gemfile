@@ -11,9 +11,9 @@ gem 'bundler', '>= 2.0'
 gem 'pg', '~> 1.1'
 # Use Puma as the app server
 gem 'puma', '~> 6.0'
-# Use Dart Sass for SCSS compilation
-gem 'dartsass-rails'
+# Use Dart Sass for SCSS compilation through Sprockets (also needed by rails_admin)
 gem 'sprockets-rails'
+gem 'sassc-embedded'
 # Bootstrap 5 is served via CDN in the application layout
 # Use importmap for JavaScript (replaces webpacker)
 gem 'importmap-rails'
@@ -36,7 +36,7 @@ gem 'bootsnap', '>= 1.4.2', require: false
 
 group :development, :test do
   # Call 'debug' anywhere in the code to stop execution and get a debugger console
-  gem 'debug', platforms: [:mri, :mingw, :x64_mingw]
+  gem 'debug', platforms: %i[mri windows]
   # added faker gem for generating syntehtic data
   gem 'faker', '~> 3.5'
 end
@@ -59,7 +59,7 @@ group :test do
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
-gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
+gem 'tzinfo-data', platforms: %i[windows jruby]
 
 # User authentication system, handling logins and signups
 gem 'devise'

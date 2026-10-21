@@ -11,7 +11,8 @@
     <h1><%= @report.title %></h1>
     <span class="badge bg-secondary fs-6"><%= @report.report_type.humanize %></span>
     <span class="badge bg-<%= @report.status == 'open' ? 'success' : 'warning' %> fs-6"><%= @report.status.humanize %></span>  
-    <%= link_to "← Back to Reports", reports_path, class: "btn btn-outline-secondary" %>
+  </div>
+  <%= link_to "← Back to Reports", reports_path, class: "btn btn-outline-secondary" %>
 </div>
 
 <div class="card mb-4">

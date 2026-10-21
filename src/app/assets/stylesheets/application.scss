@@ -27,3 +27,12 @@
 // and require_self *cannot* be removed.
 
 // Your code here...
+
+// Hide the top bar while scrolling down (see app/javascript/application.js)
+.navbar {
+  transition: transform 0.3s ease-in-out;
+}
+
+.navbar-hidden {
+  transform: translateY(-100%);
+}
