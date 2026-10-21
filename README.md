@@ -146,3 +146,7 @@ This project is available under the terms in the repository license file.
 - [x] vote counter support
 - [x] sorting/filtering for reports
 
+## Planned Features
+- polish UI
+- upload image from device
+- multi-factor authentication (MFA)
