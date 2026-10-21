@@ -124,6 +124,10 @@ The application includes seeded users for testing:
 - User: `user@example.com` / `password`
 - Admin: `admin@example.com` / `password`
 
+## Directory layout
+
+For a map of the repository and what each folder and file is responsible for, see [docs/directoryLayout.md](docs/directoryLayout.md).
+
 ## Project maintenance
 
 For project maintenance notes and operational guidance, see [docs/maintenance.md](docs/maintenance.md).
