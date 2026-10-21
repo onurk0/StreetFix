@@ -16,7 +16,6 @@ StreetFix helps with:
 
 ## Runtime previews
 
-The placeholders below are ready for real screenshots or app captures once the project is running locally.
 
 ![StreetFix dashboard](docs/images/dashboard.png)
 ![StreetFix report form](docs/images/submit_report.png)
