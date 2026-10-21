@@ -40,6 +40,28 @@ only things you need on your machine are:
 - Git
 - Docker (or Podman — replace `docker` with `podman` in the commands below)
 
+### Installing Docker
+
+Install Docker by following the official instructions on the Docker website:
+<https://docs.docker.com/get-started/get-docker/>
+
+- **Windows / macOS:** download and install
+  [Docker Desktop](https://www.docker.com/products/docker-desktop/), then start it.
+  ([Windows guide](https://docs.docker.com/desktop/setup/install/windows-install/),
+  [macOS guide](https://docs.docker.com/desktop/setup/install/mac-install/))
+- **Linux:** install Docker Engine using the guide for your distribution at
+  <https://docs.docker.com/engine/install/> (Ubuntu, Debian, Fedora, RHEL, ...).
+  Afterwards, follow the
+  [post-installation steps](https://docs.docker.com/engine/install/linux-postinstall/)
+  to run `docker` without `sudo`, then log out and back in.
+
+Check that Docker works:
+
+```bash
+docker --version
+docker run --rm hello-world
+```
+
 ## Installation
 
 1. Clone the repository:

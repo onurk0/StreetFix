@@ -4,9 +4,19 @@
 
 Ruby, Rails, all gems and PostgreSQL are provided by the `Dockerfile` in the root of
 the repository, so nothing else needs to be installed on your machine besides Git and
-Docker (or Podman). Check that Docker works by running:
+Docker (or Podman).
+
+Install Docker by following the official instructions on the Docker website:
+<https://docs.docker.com/get-started/get-docker/>
+
+* **Windows / macOS:** download and install [Docker Desktop](https://www.docker.com/products/docker-desktop/), then start it. Step-by-step guides: [Windows](https://docs.docker.com/desktop/setup/install/windows-install/), [macOS](https://docs.docker.com/desktop/setup/install/mac-install/).
+* **Linux (including the course VMs):** pick your distribution on <https://docs.docker.com/engine/install/> and follow the "Install using the repository" steps. For example, on a RHEL-based VM use <https://docs.docker.com/engine/install/rhel/>, on Ubuntu use <https://docs.docker.com/engine/install/ubuntu/>.
+  Then complete the [Linux post-installation steps](https://docs.docker.com/engine/install/linux-postinstall/) so you can run `docker` without `sudo`, and log out and back in for the group change to take effect.
+
+Check that Docker works by running:
 
     docker --version
+    docker run --rm hello-world
 
 ### Install this repository: 
 > Students **MUST** use this template, PLEASE BE SURE to click **USE THIS TEMPLATE** on the top of the repository before you clone it (DO NOT FORK). 
