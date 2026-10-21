@@ -9,7 +9,7 @@ From the `src` source path, enter the following paths to find the file you are l
 ## Tech Stack
 - Version control: git
 - Versions: Rails 8.1.2 and Ruby 4.0.1
-- use `bundle install` to install all the Gems
+- run `docker build -t streetfix .` from the repository root to install Ruby and all the Gems (see the `Dockerfile`)
     - if any Gem is outdated, update it to a more recent version
 
 ## Controllers (`/app/controllers`)

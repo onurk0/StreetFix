@@ -4,6 +4,12 @@ default: &default
   # For details on connection pooling, see Rails configuration guide
   # https://guides.rubyonrails.org/configuring.html#database-pooling
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+  # Connection settings can be supplied through the environment (used by the
+  # Docker image). When unset, the local PostgreSQL unix socket is used.
+  host: <%= ENV["DB_HOST"] %>
+  port: <%= ENV["DB_PORT"] %>
+  username: <%= ENV["DB_USERNAME"] %>
+  password: <%= ENV["DB_PASSWORD"] %>
 
 development:
   <<: *default
@@ -39,5 +45,5 @@ test:
 production:
   <<: *default
   database: SE_template_production
-  username: SE_template
-  password: <%= ENV['SE_TEMPLATE_DATABASE_PASSWORD'] %>
+  username: <%= ENV.fetch("DB_USERNAME") { "SE_template" } %>
+  password: <%= ENV["DB_PASSWORD"] || ENV["SE_TEMPLATE_DATABASE_PASSWORD"] %>

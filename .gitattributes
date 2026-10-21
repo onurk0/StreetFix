@@ -1,0 +1,2 @@
+# Keep LF line endings so scripts in src/bin run on Linux and in Docker
+* text=auto eol=lf

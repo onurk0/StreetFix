@@ -1,6 +1,9 @@
 # frozen_string_literal: true
 
 RailsAdmin.config do |config|
+  # Admin assets are compiled by Sprockets (SCSS via sassc-embedded)
+  config.asset_source = :sprockets
+
   ### Popular gems integration
 
   ## == Devise ==
@@ -8,6 +11,11 @@ RailsAdmin.config do |config|
     warden.authenticate! scope: :user
   end
   config.current_user_method(&:current_user)
+
+  # Only admins may use the admin panel
+  config.authorize_with do
+    redirect_to main_app.root_path, alert: 'You are not authorized to access the admin panel.' unless current_user&.admin?
+  end
 
   ## == CancanCan ==
   # config.authorize_with :cancancan

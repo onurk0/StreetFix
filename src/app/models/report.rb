@@ -26,7 +26,7 @@ class Report < ApplicationRecord
     tree: 3,
     power_line: 4,
     other: 5
-  }
+  }, validate: true
 
   # Validations
   validates :title,       presence: true, length: { maximum: 100 }

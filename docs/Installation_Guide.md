@@ -1,17 +1,12 @@
 ## Development Setup
 
-### Install Ruby on Rails & PostgreSQL for your machine:
+### Install Docker:
 
-> **TCNJ students using a VM:** 
-Make sure that you have the correct version of Ruby and Rails installed on your VM by running the installruby.sh script, this is done by the following command:
+Ruby, Rails, all gems and PostgreSQL are provided by the `Dockerfile` in the root of
+the repository, so nothing else needs to be installed on your machine besides Git and
+Docker (or Podman). Check that Docker works by running:
 
-    ./installruby.sh
-
-The script only needs to be run once.  To check if it was successfully installed run the following to ensure that your VM has Ruby 4.0.1 and that the Rails command is recognized.
-
-    ruby -v
-    
-    rails -v
+    docker --version
 
 ### Install this repository: 
 > Students **MUST** use this template, PLEASE BE SURE to click **USE THIS TEMPLATE** on the top of the repository before you clone it (DO NOT FORK). 
@@ -31,45 +26,23 @@ If you already have an SSH key set up, here is how to clone this repo:
 3. If you are told that the authenticity of the host 'github.com' can't be established, and asked if you want to continue connecting, enter "yes".
 4. You'll be prompted to enter the passphrase you made earlier for your SSH key. After you enter that, the repository will be cloned to your VM.
 
-### Installing dependencies
+### Building and running the app
 
-Now that you've cloned your repository, navigate to the `<repo_name>/src/` folder. This folder is where all the code files are located. (There's also a `<repo_name>/docs/` folder you may have noticed that should hold relevant project documents and diagrams). Here, in the src directory, you now have to install the project dependencies. Run the following commands:
+Now that you've cloned your repository, go into the `<repo_name>/` folder (the one containing the `Dockerfile`). The code lives in `<repo_name>/src/`, and there's also a `<repo_name>/docs/` folder for project documents and diagrams.
 
-`bundle install`
+Build the image (installs Ruby 4.0.1, Rails, all gems and PostgreSQL):
 
-Go into your sysadmin account and run:
+    docker build -t streetfix .
 
-`sudo npm install -g yarn` and then,
+Run the app. The first start creates, migrates and seeds the database automatically, and the `streetfix-db` volume keeps the data between runs:
 
-`sudo -u postgres createuser -s student(n)` <-- replacing (n) with whatever student account you're setting up in
+    docker run --rm -p 3000:3000 -v streetfix-db:/var/lib/postgresql/data streetfix
 
-Logout, go back into your studentn account go into <repo_name>/src.
+The app is then available in the browser at http://localhost:3000/ (or, on a server, at `http://<server-address>:3000/`).
 
-`bundle install`
+To run any other Rails command, put it after the image name, for example:
 
-### Create the databases and perform migration:
-
-    rake db:create
-    
-    rake db:migrate
-    
-    rake db:seed
-
-### Finally, run the app.
-Find your VM’s ip address by running the command
-
-`ip addr`
-
-**Please see the instructions to set up the Virtual Machine Setup (given at the beginning of the semester) to review how to run the server. ** 
-
-Run the server by running:
-
-`rails server --binding=xxx.xxx.xxx.xxx`
-
-Note that you won't be able to run the rails server unless you are in the `src` folder.
-
-The app should be available in the browser at http://csc415-serverXX.hpc.tcnj.edu:3000/ 
-Where XX is your server number.
+    docker run --rm -v streetfix-db:/var/lib/postgresql/data streetfix bin/rails db:migrate
 
 Your Rails starter project has now been successfully created!  Please read through [this page](More_helpful_info.md) to view the gems that are already included to better understand the current project capabilities such as a premade login/registration functionality and an administrative portal.
 
@@ -86,27 +59,9 @@ If the SE-Rails-Template is updated after you've already created your project, y
         git fetch template
         git pull template main
 
-3. Resolve any merge conflicts, then run:
+3. Resolve any merge conflicts, then rebuild the image (pending migrations run automatically when the container starts):
 
-        cd src
-        bundle install
-        rake db:migrate
-
-If you still encounter errors, make sure the PostgreSQL server has been started, or try to restart it.
-
-  Starting the server (should already be configured to start automatically at boot-up):
-  `sudo systemctl start postgresql`
-
-  Restarting the server:
-  `sudo systemctl restart postgresql-18`
-
-> **TCNJ NOTE:** If issues continue, there's something wrong with your psql installation.
-
-* Please run the following. `sudo yum install postgresql-libs postgresql-devel --nobest`
-
-* If the errors still continue, look up the error you're receiving for more advice.
-
-Once bundle install successfully completes you can begin to create the database.
+        docker build -t streetfix .
 
 ### Note on the .gitignore file
-If you have any files in your app with sensitive information, API keys, data files for your database, etc., make sure to add them to your `.gitignore` file so that those files are not published on GitHub for everyone to see. You can read more about what this file is and how to use it [here](.gitignore_Guide.md).
+If you have any files in your app with sensitive information, API keys, data files for your database, etc., make sure to add them to the `.gitignore` file in the root of the repository so that those files are not published on GitHub for everyone to see. You can read more about what this file is and how to use it [here](.gitignore_Guide.md).

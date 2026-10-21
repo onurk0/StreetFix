@@ -33,21 +33,12 @@ The placeholders below are ready for real screenshots or app captures once the p
 
 ## Prerequisites
 
-Before installing, make sure your machine has:
+The whole development environment (Ruby 4.0.1, Bundler, Rails, every gem and a
+PostgreSQL server) is built from the `Dockerfile` in the repository root, so the
+only things you need on your machine are:
 
 - Git
-- PostgreSQL
-- Ruby 4.0.1 and Bundler
-- Node.js and npm
-- A local shell environment configured for Ruby version management
-
-Use the single installer script for the project environment:
-
-```bash
-./installruby.sh
-```
-
-This script installs the correct Ruby version and the matching Rails version for the app, then configures Bundler.
+- Docker (or Podman — replace `docker` with `podman` in the commands below)
 
 ## Installation
 
@@ -58,38 +49,17 @@ git clone <your-repository-url>
 cd StreetFix
 ```
 
-2. Run the single project installer:
+2. Build the image:
 
 ```bash
-./installruby.sh
+docker build -t streetfix .
 ```
 
-This is the only install script the project uses for the runtime environment. If the script updates your shell configuration, log out and back in before continuing.
-
-3. Start PostgreSQL and confirm it is available:
-
-```bash
-which postgres
-postgres --version
-```
-
-4. Install the Ruby gems:
+3. Start the app. On first start the container creates, migrates and seeds the
+   database; the named volume keeps your data between runs:
 
 ```bash
-cd src
-bundle install
-```
-
-5. Create and seed the database:
-
-```bash
-bin/rails db:setup
-```
-
-6. Start the app:
-
-```bash
-bin/rails server
+docker run --rm -p 3000:3000 -v streetfix-db:/var/lib/postgresql/data streetfix
 ```
 
 Then open the application in your browser at:
@@ -98,7 +68,26 @@ Then open the application in your browser at:
 http://localhost:3000
 ```
 
+### Using an external PostgreSQL server
+
+By default the container runs its own PostgreSQL. To use another server
+instead, pass its connection settings:
+
+```bash
+docker run --rm -p 3000:3000 \
+  -e DB_HOST=db.example.com -e DB_USERNAME=streetfix -e DB_PASSWORD=secret \
+  streetfix
+```
+
+### Running the tests
+
+```bash
+docker run --rm -e RAILS_ENV=test streetfix bin/rails test
+```
+
 ## Common database commands
+
+Run these inside the container, for example `docker run --rm -v streetfix-db:/var/lib/postgresql/data streetfix bin/rails db:reset`:
 
 ```bash
 bin/rails db:setup
