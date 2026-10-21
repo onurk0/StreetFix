@@ -16,11 +16,10 @@ StreetFix helps with:
 
 ## Runtime previews
 
-The placeholders below are ready for real screenshots or app captures once the project is running locally.
 
-![StreetFix dashboard placeholder](docs/images/streetfix-dashboard.svg)
-![StreetFix report form placeholder](docs/images/streetfix-report-form.svg)
-![StreetFix report list placeholder](docs/images/streetfix-report-list.svg)
+![StreetFix dashboard](docs/images/dashboard.png)
+![StreetFix report form](docs/images/submit_report.png)
+![StreetFix report list](docs/images/view_reports.png)
 
 ## Tech stack
 
@@ -147,3 +146,7 @@ This project is available under the terms in the repository license file.
 - [x] vote counter support
 - [x] sorting/filtering for reports
 
+## Planned Features
+- polish UI
+- upload image from device
+- multi-factor authentication (MFA)
