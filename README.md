@@ -18,9 +18,9 @@ StreetFix helps with:
 
 The placeholders below are ready for real screenshots or app captures once the project is running locally.
 
-![StreetFix dashboard placeholder](docs/images/streetfix-dashboard.svg)
-![StreetFix report form placeholder](docs/images/streetfix-report-form.svg)
-![StreetFix report list placeholder](docs/images/streetfix-report-list.svg)
+![StreetFix dashboard](docs/images/dashboard.png)
+![StreetFix report form](docs/images/submit_report.png)
+![StreetFix report list](docs/images/view_reports.png)
 
 ## Tech stack
 
